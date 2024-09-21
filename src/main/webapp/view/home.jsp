@@ -50,7 +50,7 @@
 </head>
 <body>
     <h1>Welcome to Your Home Page</h1>
-    <form action="logoutServlet" method="post">
+    <form action="home/logout" method="post">
         <button type="submit">Log Out</button>
     </form>
 </body>
