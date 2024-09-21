@@ -64,8 +64,6 @@ public class LoginController extends HttpServlet{
 			req.setAttribute("alert", alertMsg);
 			req.getRequestDispatcher("/view/login.jsp").forward(req, resp);
 		}
-		
-		
 	}
 	private void saveRememberme(HttpServletResponse resp, String uname) {
 		// TODO Auto-generated method stub

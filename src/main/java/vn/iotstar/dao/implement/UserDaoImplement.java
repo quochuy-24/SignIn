@@ -142,4 +142,87 @@ public class UserDaoImplement extends DBconnectMySql implements IUserDao{
 		}
 		return null;
 	}
+
+	@Override
+	public UserModel findByEmail(String email) {
+		String sql = "SELECT * FROM user WHERE email = ? ";
+		try {
+			conn = super.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1,email);
+			rs = ps.executeQuery();
+			while (rs != null && rs.next()) {
+				UserModel user = new UserModel();
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setUsername(rs.getString("username"));
+				user.setFullname(rs.getString("fullname"));
+				user.setPassword(rs.getString("password"));
+				user.setImage(rs.getString("image"));
+				user.setRoleid(Integer.parseInt(rs.getString("roleid")));
+				user.setPhone(rs.getString("phone"));
+				user.setCreatedate(rs.getDate("createdate"));
+				return user; }
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public UserModel findByPhone(String phone) {
+		String sql = "SELECT * FROM user WHERE phone = ? ";
+		try {
+			conn = super.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1,phone);
+			rs = ps.executeQuery();
+			while (rs != null && rs.next()) {
+				UserModel user = new UserModel();
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setUsername(rs.getString("username"));
+				user.setFullname(rs.getString("fullname"));
+				user.setPassword(rs.getString("password"));
+				user.setImage(rs.getString("image"));
+				user.setRoleid(Integer.parseInt(rs.getString("roleid")));
+				user.setPhone(rs.getString("phone"));
+				user.setCreatedate(rs.getDate("createdate"));
+				return user; }
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean checkExistEmail(String email) {
+		IUserDao u = new UserDaoImplement();
+		if (u.findByEmail(email) == null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean checkExistUsername(String username) {
+		// TODO Auto-generated method stub
+		IUserDao u = new UserDaoImplement();
+		if (u.findByEmail(username) == null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean checkExistPhone(String phone) {
+		// TODO Auto-generated method stub
+		IUserDao u = new UserDaoImplement();
+		if (u.findByEmail(phone) == null) {
+			return true;
+		}
+		return false;
+	}
 }
